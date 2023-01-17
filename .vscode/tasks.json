@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Cryptocop.Software.API/Cryptocop.Software.API/Cryptocop.Software.API.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Cryptocop.Software.API/Cryptocop.Software.API/Cryptocop.Software.API.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Cryptocop.Software.API/Cryptocop.Software.API/Cryptocop.Software.API.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ],
+    "dockerRun": {
+        "env": {
+            "ASPNETCORE_URLS": "http://+:5000"
+        }
+    },
+    "netCore": {
+        "appProject": "${workspacefolder}/MyProject.csproj",
+        "enableDebugging": true,
+        "configureSsl": true
+    }
+}

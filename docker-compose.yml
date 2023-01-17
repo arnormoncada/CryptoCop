@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  cryptocop-email:
+    build: ./cryptocop-emails
+    image: arnormoncada/cryptocop-email:latest
+    container_name: cryptocop-email
+    ports:
+      - "80:3000"
+    networks:
+      - cryptocop-network
+    depends_on:
+      - rabbitmq
+
+  cryptocop-payment:
+    build: ./cryptocop-payments
+    image: arnormoncada/cryptocop-payment:latest
+    container_name: cryptocop-payment
+    ports:
+      - "81:3001"
+    networks:
+      - cryptocop-network
+    depends_on:
+      - rabbitmq
+
+  cryptocop-api:
+    build: ./Cryptocop.Software.API
+    image: arnormoncada/cryptocop-api:latest
+    container_name: cryptocop-api
+    ports:
+      - "9000:5000"
+      - "9001:5001"
+    networks:
+      - cryptocop-network
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" #fyrir queue
+      - "15672:15672" #fyrir UI til að viewa allt í gangi
+    networks:
+      - cryptocop-network
+
+networks:
+  cryptocop-network:
+    driver: bridge

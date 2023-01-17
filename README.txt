@@ -1,3 +1,7 @@
+Final project for my web API course in Reykjavík University.
+Consists of three microservices.
+Received full marks.
+
 Cryptocop api
 To run the application use the following commands:
     -dotnet restore
